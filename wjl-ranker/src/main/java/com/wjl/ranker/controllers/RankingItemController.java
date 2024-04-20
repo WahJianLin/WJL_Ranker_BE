@@ -1,6 +1,7 @@
 package com.wjl.ranker.controllers;
 
-import com.wjl.ranker.entities.RankingItem;
+import com.wjl.ranker.DTO.RankingItemDTO;
+import com.wjl.ranker.entities.RankingItemEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -8,17 +9,17 @@ import java.util.List;
 
 public interface RankingItemController {
     @GetMapping()
-    ResponseEntity<List<RankingItem>> getAllRankingItems();
+    ResponseEntity<List<RankingItemDTO>> getAllRankingItems();
 
     @GetMapping("{id}")
-    ResponseEntity<RankingItem> getRankingItemById(@PathVariable Long id);
+    ResponseEntity<RankingItemDTO> getRankingItemById(@PathVariable Long id);
 
     @PostMapping()
-    ResponseEntity<RankingItem> createRankingItem(@RequestBody RankingItem rankingItem);
+    ResponseEntity<RankingItemDTO> createRankingItem(@RequestBody RankingItemEntity rankingItemEntity);
 
     @PutMapping()
-    ResponseEntity<RankingItem> updateRankingItem(@RequestBody RankingItem rankingItem);
+    ResponseEntity<RankingItemDTO> updateRankingItem(@RequestBody RankingItemEntity rankingItemEntity);
 
     @DeleteMapping("{id}")
-    ResponseEntity deleteRankingItem(@PathVariable Long id);
+    ResponseEntity<?> deleteRankingItem(@PathVariable Long id);
 }

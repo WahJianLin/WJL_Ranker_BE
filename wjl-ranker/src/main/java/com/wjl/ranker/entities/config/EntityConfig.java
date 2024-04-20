@@ -1,6 +1,6 @@
 package com.wjl.ranker.entities.config;
 
-import com.wjl.ranker.entities.RankingItem;
+import com.wjl.ranker.entities.RankingItemEntity;
 import com.wjl.ranker.repositories.RankingItemRepo;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -13,13 +13,13 @@ public class EntityConfig {
     @Bean
     CommandLineRunner commandLineRunner(RankingItemRepo rankingItemRepo) {
         return args -> {
-            RankingItem alpha = new RankingItem(
+            RankingItemEntity alpha = new RankingItemEntity(
                     "alpha",
                     0);
-            RankingItem beta = new RankingItem(
+            RankingItemEntity beta = new RankingItemEntity(
                     "beta",
                     0);
-            RankingItem charlie = new RankingItem(
+            RankingItemEntity charlie = new RankingItemEntity(
                     "charlie",
                     1);
 

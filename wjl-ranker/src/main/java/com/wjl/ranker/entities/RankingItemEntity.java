@@ -12,7 +12,7 @@ import lombok.ToString;
 @ToString
 @Entity
 @NoArgsConstructor
-public class RankingItem {
+public class RankingItemEntity {
 
     private static final String SEQUENCE_NAME = "ranking_item_sequence";
 
@@ -28,9 +28,9 @@ public class RankingItem {
     )
     private Long id;
     private String name;
-    private Integer CategoryType;
+    private Integer categoryType;
 
-    public RankingItem(String name, Integer categoryType) {
+    public RankingItemEntity(String name, Integer categoryType) {
         this.setName(name);
         this.setCategoryType(categoryType);
     }
