@@ -1,6 +1,7 @@
 package com.wjl.ranker.controllers;
 
-import com.wjl.ranker.entities.RankingItem;
+import com.wjl.ranker.DTO.RankingItemDTO;
+import com.wjl.ranker.entities.RankingItemEntity;
 import com.wjl.ranker.services.RankingItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +22,7 @@ public class RankingItemControllerImpl implements RankingItemController {
     }
 
     @Override
-    public ResponseEntity<List<RankingItem>> getAllRankingItems() {
+    public ResponseEntity<List<RankingItemDTO>> getAllRankingItems() {
         // TODO create more specific exceptions
         try {
             return ResponseEntity.ok(rankingItemService.getAllRankingItems());
@@ -31,30 +32,30 @@ public class RankingItemControllerImpl implements RankingItemController {
     }
 
     @Override
-    public ResponseEntity<RankingItem> getRankingItemById(Long id) {
+    public ResponseEntity<RankingItemDTO> getRankingItemById(Long id) {
         // TODO create more specific exceptions
         try {
-            return ResponseEntity.ok(rankingItemService.getRankingItem(id));
+            return ResponseEntity.ok(rankingItemService.getRankingItemById(id));
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();
         }
     }
 
     @Override
-    public ResponseEntity<RankingItem> createRankingItem(RankingItem rankingItem) {
+    public ResponseEntity<RankingItemDTO> createRankingItem(RankingItemEntity rankingItemEntity) {
         // TODO create more specific exceptions
         try {
-            return ResponseEntity.ok(rankingItemService.createRankingItem(rankingItem));
+            return ResponseEntity.ok(rankingItemService.createRankingItem(rankingItemEntity));
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();
         }
     }
 
     @Override
-    public ResponseEntity<RankingItem> updateRankingItem(RankingItem rankingItem) {
+    public ResponseEntity<RankingItemDTO> updateRankingItem(RankingItemEntity rankingItemEntity) {
         // TODO create more specific exceptions
         try {
-            return ResponseEntity.ok(rankingItemService.updateRankingItem(rankingItem));
+            return ResponseEntity.ok(rankingItemService.updateRankingItem(rankingItemEntity));
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();
         }
