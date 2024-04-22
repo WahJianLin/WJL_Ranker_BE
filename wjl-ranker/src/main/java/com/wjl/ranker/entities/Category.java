@@ -1,6 +1,5 @@
 package com.wjl.ranker.entities;
 
-
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,9 +11,8 @@ import lombok.ToString;
 @ToString
 @Entity
 @NoArgsConstructor
-public class RankingItemEntity {
-
-    private static final String SEQUENCE_NAME = "ranking_item_sequence";
+public class Category {
+    private static final String SEQUENCE_NAME = "category_sequence";
 
     @Id
     @SequenceGenerator(
@@ -28,10 +26,10 @@ public class RankingItemEntity {
     )
     private Long id;
     private String name;
-    private Integer categoryType;
+    private String description;
 
-    public RankingItemEntity(String name, Integer categoryType) {
+    public Category(String name, String description) {
         this.setName(name);
-        this.setCategoryType(categoryType);
+        this.setDescription(description);
     }
 }

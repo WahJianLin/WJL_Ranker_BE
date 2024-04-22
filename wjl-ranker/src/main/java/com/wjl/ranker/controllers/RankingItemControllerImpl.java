@@ -1,7 +1,7 @@
 package com.wjl.ranker.controllers;
 
 import com.wjl.ranker.DTO.RankingItemDTO;
-import com.wjl.ranker.entities.RankingItemEntity;
+import com.wjl.ranker.entities.RankingItem;
 import com.wjl.ranker.services.RankingItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(path="api/v1/ranking-items")
+@RequestMapping(path="api/v1/ranking-item")
 public class RankingItemControllerImpl implements RankingItemController {
 
     private final RankingItemService rankingItemService;
@@ -42,7 +42,7 @@ public class RankingItemControllerImpl implements RankingItemController {
     }
 
     @Override
-    public ResponseEntity<RankingItemDTO> createRankingItem(RankingItemEntity rankingItemEntity) {
+    public ResponseEntity<RankingItemDTO> createRankingItem(RankingItem rankingItemEntity) {
         // TODO create more specific exceptions
         try {
             return ResponseEntity.ok(rankingItemService.createRankingItem(rankingItemEntity));
@@ -52,7 +52,7 @@ public class RankingItemControllerImpl implements RankingItemController {
     }
 
     @Override
-    public ResponseEntity<RankingItemDTO> updateRankingItem(RankingItemEntity rankingItemEntity) {
+    public ResponseEntity<RankingItemDTO> updateRankingItem(RankingItem rankingItemEntity) {
         // TODO create more specific exceptions
         try {
             return ResponseEntity.ok(rankingItemService.updateRankingItem(rankingItemEntity));

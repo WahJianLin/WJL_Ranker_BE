@@ -1,6 +1,8 @@
 package com.wjl.ranker.entities.config;
 
-import com.wjl.ranker.entities.RankingItemEntity;
+import com.wjl.ranker.entities.Category;
+import com.wjl.ranker.entities.RankingItem;
+import com.wjl.ranker.repositories.CategoryRepo;
 import com.wjl.ranker.repositories.RankingItemRepo;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -11,20 +13,32 @@ import java.util.List;
 @Configuration
 public class EntityConfig {
     @Bean
-    CommandLineRunner commandLineRunner(RankingItemRepo rankingItemRepo) {
+    CommandLineRunner commandLineRunner(CategoryRepo categoryRepo, RankingItemRepo rankingItemRepo) {
         return args -> {
-            RankingItemEntity alpha = new RankingItemEntity(
+            Category novel = new Category(
+                    "novel",
+                    "novel desc"
+            );
+            Category movie = new Category(
+                    "movie",
+                    "movie desc"
+            );
+            RankingItem alpha = new RankingItem(
                     "alpha",
-                    0);
-            RankingItemEntity beta = new RankingItemEntity(
+                    null);
+            RankingItem beta = new RankingItem(
                     "beta",
-                    0);
-            RankingItemEntity charlie = new RankingItemEntity(
+                    null);
+            RankingItem charlie = new RankingItem(
                     "charlie",
-                    1);
+                    null);
 
             rankingItemRepo.saveAll(
                     List.of(alpha, beta, charlie)
+            );
+
+            categoryRepo.saveAll(
+                    List.of(novel, movie)
             );
         };
     }
