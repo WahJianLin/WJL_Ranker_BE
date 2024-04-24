@@ -1,6 +1,7 @@
 package com.wjl.ranker.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,9 +29,14 @@ public class RankingItem {
     )
     private Long id;
     private String name;
-    private Integer category;
+     @ManyToOne(fetch = FetchType.EAGER)
+     @JoinColumn(name = "category_id")
+     @JsonManagedReference
 
-    public RankingItem(String name, Integer category) {
+     private Category category;
+
+
+    public RankingItem(String name, Category category) {
         this.setName(name);
         this.setCategory(category);
     }

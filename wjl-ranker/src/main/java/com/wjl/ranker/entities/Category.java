@@ -1,10 +1,13 @@
 package com.wjl.ranker.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+
+import java.util.Set;
 
 @Getter
 @Setter
@@ -27,6 +30,11 @@ public class Category {
     private Long id;
     private String name;
     private String description;
+
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+    @JsonBackReference
+    private Set<RankingItem> rankingItemSet;
+
 
     public Category(String name, String description) {
         this.setName(name);

@@ -25,7 +25,7 @@ public class EntityConfig {
             );
             RankingItem alpha = new RankingItem(
                     "alpha",
-                    null);
+                    novel);
             RankingItem beta = new RankingItem(
                     "beta",
                     null);
@@ -33,13 +33,15 @@ public class EntityConfig {
                     "charlie",
                     null);
 
+            categoryRepo.saveAll(
+                    List.of(novel, movie)
+            );
+
             rankingItemRepo.saveAll(
                     List.of(alpha, beta, charlie)
             );
 
-            categoryRepo.saveAll(
-                    List.of(novel, movie)
-            );
+
         };
     }
 }
