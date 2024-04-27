@@ -1,12 +1,12 @@
-package com.wjl.ranker.DTO;
+package com.wjl.ranker.dto;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class RankingItemDTO {
+public class CategoryDTO {
     private Long id;
     private String name;
-    private Integer categoryType;
+    private String description;
 }
