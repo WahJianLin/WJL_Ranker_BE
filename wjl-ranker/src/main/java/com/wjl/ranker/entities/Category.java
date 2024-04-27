@@ -33,6 +33,7 @@ public class Category {
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     @JsonBackReference
+    @ToString.Exclude
     private Set<RankingItem> rankingItemSet;
 
 

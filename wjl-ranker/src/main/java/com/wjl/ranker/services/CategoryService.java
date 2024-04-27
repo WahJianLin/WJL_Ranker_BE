@@ -1,18 +1,17 @@
 package com.wjl.ranker.services;
 
-import com.wjl.ranker.DTO.CategoryDTO;
 import com.wjl.ranker.entities.Category;
 
 import java.util.List;
 
 public interface CategoryService {
-    List<CategoryDTO> getAllCategories();
+    List<Category> getAllCategories();
 
-    CategoryDTO getCategoryById(Long id);
+    Category getCategoryById(Long id);
 
-    CategoryDTO createCategory(CategoryDTO categoryDTO);
+    Category createCategory(Category categoryEntity);
 
-    CategoryDTO updateCategory(CategoryDTO categoryDTO);
+    Category updateCategory(Category categoryEntity);
 
     void deleteCategory(long id);
 }

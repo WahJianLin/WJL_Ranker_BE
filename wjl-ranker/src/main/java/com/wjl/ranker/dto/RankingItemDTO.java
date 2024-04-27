@@ -1,6 +1,5 @@
-package com.wjl.ranker.DTO;
+package com.wjl.ranker.dto;
 
-import com.wjl.ranker.entities.Category;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,5 +8,5 @@ import lombok.Setter;
 public class RankingItemDTO {
     private Long id;
     private String name;
-    private Category category;
+    private Long categoryTypeId;
 }

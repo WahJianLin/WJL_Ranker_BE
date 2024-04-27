@@ -1,6 +1,5 @@
 package com.wjl.ranker.services;
 
-import com.wjl.ranker.DTO.RankingItemDTO;
 import com.wjl.ranker.entities.RankingItem;
 import com.wjl.ranker.repositories.RankingItemRepo;
 import jakarta.persistence.EntityNotFoundException;
@@ -12,7 +11,7 @@ import java.util.List;
 @Service
 public class RankingItemServiceImpl implements RankingItemService {
 
-    final RankingItemRepo rankingItemRepo;
+    private final RankingItemRepo rankingItemRepo;
 
     @Autowired
     public RankingItemServiceImpl(RankingItemRepo rankingItemRepo) {
@@ -20,27 +19,27 @@ public class RankingItemServiceImpl implements RankingItemService {
     }
 
     @Override
-    public List<RankingItemDTO> getAllRankingItems() {
-        return rankingItemRepo.findAll().stream().map(this::toDTO).toList();
+    public List<RankingItem> getAllRankingItems() {
+        return rankingItemRepo.findAll();
     }
 
     @Override
-    public RankingItemDTO getRankingItemById(Long id) {
-        return toDTO(getRankingItem(id));
+    public RankingItem getRankingItemById(Long id) {
+        return getRankingItem(id);
     }
 
     @Override
-    public RankingItemDTO createRankingItem(RankingItem rankingItemEntity) {
+    public RankingItem createRankingItem(RankingItem rankingItemEntity) {
         //TODO create validator that validates the RankingItem before creation
         try {
-            return toDTO(rankingItemRepo.save(rankingItemEntity));
+            return rankingItemRepo.save(rankingItemEntity);
         } catch (Exception e) {
             throw new RuntimeException("Item failed to Save");
         }
     }
 
     @Override
-    public RankingItemDTO updateRankingItem(RankingItem rankingItemEntity) {
+    public RankingItem updateRankingItem(RankingItem rankingItemEntity) {
         //TODO create validator that validates the RankingItem before update
         RankingItem item = getRankingItem(rankingItemEntity.getId());
         try {
@@ -50,7 +49,7 @@ public class RankingItemServiceImpl implements RankingItemService {
         } catch (Exception e) {
             throw new RuntimeException("Item failed to update");
         }
-        return toDTO(item);
+        return item;
     }
 
     @Override
@@ -60,14 +59,6 @@ public class RankingItemServiceImpl implements RankingItemService {
         } else {
             rankingItemRepo.deleteById(id);
         }
-    }
-
-    private RankingItemDTO toDTO(RankingItem rankingItemEntity) {
-        RankingItemDTO dto = new RankingItemDTO();
-        dto.setId(rankingItemEntity.getId());
-        dto.setName(rankingItemEntity.getName());
-        dto.setCategory(rankingItemEntity.getCategory());
-        return dto;
     }
 
     private RankingItem getRankingItem(Long id) {

@@ -1,18 +1,17 @@
 package com.wjl.ranker.services;
 
-import com.wjl.ranker.DTO.RankingItemDTO;
 import com.wjl.ranker.entities.RankingItem;
 
 import java.util.List;
 
 public interface RankingItemService {
-    List<RankingItemDTO> getAllRankingItems();
+    List<RankingItem> getAllRankingItems();
 
-    RankingItemDTO getRankingItemById(Long id);
+    RankingItem getRankingItemById(Long id);
 
-    RankingItemDTO createRankingItem(RankingItem rankingItemEntity);
+    RankingItem createRankingItem(RankingItem rankingItemEntity);
 
-    RankingItemDTO updateRankingItem(RankingItem rankingItemEntity);
+    RankingItem updateRankingItem(RankingItem rankingItemEntity);
 
     void deleteRankingItem(long id);
 

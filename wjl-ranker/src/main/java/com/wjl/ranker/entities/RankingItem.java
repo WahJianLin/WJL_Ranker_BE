@@ -29,11 +29,10 @@ public class RankingItem {
     )
     private Long id;
     private String name;
-     @ManyToOne(fetch = FetchType.EAGER)
-     @JoinColumn(name = "category_id")
-     @JsonManagedReference
-
-     private Category category;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "category_id")
+    @JsonManagedReference
+    private Category category;
 
 
     public RankingItem(String name, Category category) {

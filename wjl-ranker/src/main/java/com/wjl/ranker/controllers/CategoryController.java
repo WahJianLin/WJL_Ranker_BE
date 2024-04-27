@@ -1,6 +1,6 @@
 package com.wjl.ranker.controllers;
 
-import com.wjl.ranker.DTO.CategoryDTO;
+import com.wjl.ranker.dto.CategoryDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,5 +20,5 @@ public interface CategoryController {
     ResponseEntity<CategoryDTO> updateCategory(@RequestBody CategoryDTO categoryDTO);
 
     @DeleteMapping("{id}")
-    ResponseEntity<?> deleteCategory(@PathVariable Long id);
+    ResponseEntity deleteCategory(@PathVariable Long id);
 }

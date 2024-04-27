@@ -1,4 +1,4 @@
-package com.wjl.ranker.DTO;
+package com.wjl.ranker.dto;
 
 import lombok.Getter;
 import lombok.Setter;

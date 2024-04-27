@@ -1,7 +1,6 @@
 package com.wjl.ranker.controllers;
 
-import com.wjl.ranker.DTO.RankingItemDTO;
-import com.wjl.ranker.entities.RankingItem;
+import com.wjl.ranker.dto.RankingItemDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,11 +14,11 @@ public interface RankingItemController {
     ResponseEntity<RankingItemDTO> getRankingItemById(@PathVariable Long id);
 
     @PostMapping()
-    ResponseEntity<RankingItemDTO> createRankingItem(@RequestBody RankingItem rankingItemEntity);
+    ResponseEntity<RankingItemDTO> createRankingItem(@RequestBody RankingItemDTO rankingItemDTO);
 
     @PutMapping()
-    ResponseEntity<RankingItemDTO> updateRankingItem(@RequestBody RankingItem rankingItemEntity);
+    ResponseEntity<RankingItemDTO> updateRankingItem(@RequestBody RankingItemDTO rankingItemDTO);
 
     @DeleteMapping("{id}")
-    ResponseEntity<?> deleteRankingItem(@PathVariable Long id);
+    ResponseEntity deleteRankingItem(@PathVariable Long id);
 }

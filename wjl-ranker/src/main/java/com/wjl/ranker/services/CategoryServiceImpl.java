@@ -1,6 +1,5 @@
 package com.wjl.ranker.services;
 
-import com.wjl.ranker.DTO.CategoryDTO;
 import com.wjl.ranker.entities.Category;
 import com.wjl.ranker.repositories.CategoryRepo;
 import jakarta.persistence.EntityNotFoundException;
@@ -14,7 +13,7 @@ public class CategoryServiceImpl implements CategoryService {
     // TODO create validator that validates the CategoriesDTOs
     // TODO use specific exceptions
 
-    final private CategoryRepo categoryRepo;
+    private final CategoryRepo categoryRepo;
 
     @Autowired
     public CategoryServiceImpl(CategoryRepo categoryRepo) {
@@ -22,33 +21,31 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public List<CategoryDTO> getAllCategories() {
-        return categoryRepo.findAll().stream().map(this::toDTO).toList();
+    public List<Category> getAllCategories() {
+        return categoryRepo.findAll();
     }
 
     @Override
-    public CategoryDTO getCategoryById(Long id) {
-        return toDTO(getCategory(id));
+    public Category getCategoryById(Long id) {
+        return categoryRepo.findById(id).orElseThrow(() -> new EntityNotFoundException("Category not found"));
     }
 
     @Override
-    public CategoryDTO createCategory(CategoryDTO categoryDTO) {
+    public Category createCategory(Category categoryEntity) {
         try {
-            Category category = categoryRepo.save(toEntity(categoryDTO));
-            return toDTO(category);
+            return categoryRepo.save(categoryEntity);
         } catch (Exception e) {
             throw new RuntimeException("Category failed to Save");
         }
     }
 
     @Override
-    public CategoryDTO updateCategory(CategoryDTO categoryDTO) {
-        Category category = getCategory(categoryDTO.getId());
+    public Category updateCategory(Category categoryEntity) {
+        Category category = getCategoryById(categoryEntity.getId());
         try {
-            category.setName(categoryDTO.getName());
-            category.setDescription(categoryDTO.getDescription());
-            categoryRepo.save(category);
-            return categoryDTO;
+            category.setName(categoryEntity.getName());
+            category.setDescription(categoryEntity.getDescription());
+            return categoryRepo.save(category);
         } catch (Exception e) {
             throw new RuntimeException("Category failed to update");
         }
@@ -61,25 +58,5 @@ public class CategoryServiceImpl implements CategoryService {
         } else {
             categoryRepo.deleteById(id);
         }
-    }
-
-    private CategoryDTO toDTO(Category category) {
-        CategoryDTO dto = new CategoryDTO();
-        dto.setId(category.getId());
-        dto.setName(category.getName());
-        dto.setDescription(category.getDescription());
-        return dto;
-    }
-
-    private Category toEntity(CategoryDTO categoryDTO) {
-        Category category = new Category();
-        category.setId(categoryDTO.getId());
-        category.setName(categoryDTO.getName());
-        category.setDescription(categoryDTO.getDescription());
-        return category;
-    }
-
-    private Category getCategory(Long id) {
-        return categoryRepo.findById(id).orElseThrow(() -> new EntityNotFoundException("Category not found"));
     }
 }
