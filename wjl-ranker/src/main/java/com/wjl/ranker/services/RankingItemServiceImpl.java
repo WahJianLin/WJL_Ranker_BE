@@ -1,8 +1,8 @@
 package com.wjl.ranker.services;
 
 import com.wjl.ranker.entities.RankingItem;
+import com.wjl.ranker.exception.GeneralException;
 import com.wjl.ranker.repositories.RankingItemRepo;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,7 +34,7 @@ public class RankingItemServiceImpl implements RankingItemService {
         try {
             return rankingItemRepo.save(rankingItemEntity);
         } catch (Exception e) {
-            throw new RuntimeException("Item failed to Save");
+            throw new GeneralException("Item failed to Save");
         }
     }
 
@@ -47,7 +47,7 @@ public class RankingItemServiceImpl implements RankingItemService {
             item.setCategory(rankingItemEntity.getCategory());
             rankingItemRepo.save(item);
         } catch (Exception e) {
-            throw new RuntimeException("Item failed to update");
+            throw new GeneralException("Item failed to update");
         }
         return item;
     }
@@ -55,13 +55,13 @@ public class RankingItemServiceImpl implements RankingItemService {
     @Override
     public void deleteRankingItem(long id) {
         if (!rankingItemRepo.existsById(id)) {
-            throw new IllegalStateException("Item " + id + " does not exist");
+            throw new GeneralException("Item " + id + " does not exist");
         } else {
             rankingItemRepo.deleteById(id);
         }
     }
 
     private RankingItem getRankingItem(Long id) {
-        return rankingItemRepo.findById(id).orElseThrow(() -> new EntityNotFoundException("Item not found"));
+        return rankingItemRepo.findById(id).orElseThrow(() -> new GeneralException("Item not found"));
     }
 }

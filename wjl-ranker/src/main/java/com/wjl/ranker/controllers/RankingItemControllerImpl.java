@@ -29,58 +29,37 @@ public class RankingItemControllerImpl implements RankingItemController {
 
     @Override
     public ResponseEntity<List<RankingItemDTO>> getAllRankingItems() {
-        // TODO create more specific exceptions
-        try {
-            List<RankingItem> response = rankingItemService.getAllRankingItems();
-            return ResponseEntity.ok(response.stream().map(this::toDTO).toList());
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().build();
-        }
+        List<RankingItem> response = rankingItemService.getAllRankingItems();
+        return ResponseEntity.ok(response.stream().map(this::toDTO).toList());
+
     }
 
     @Override
     public ResponseEntity<RankingItemDTO> getRankingItemById(Long id) {
-        // TODO create more specific exceptions
-        try {
-            RankingItem response = rankingItemService.getRankingItemById(id);
-            return ResponseEntity.ok(toDTO(response));
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().build();
-        }
+        RankingItem response = rankingItemService.getRankingItemById(id);
+        return ResponseEntity.ok(toDTO(response));
+
     }
 
     @Override
     public ResponseEntity<RankingItemDTO> createRankingItem(RankingItemDTO rankingItemDTO) {
-        // TODO create more specific exceptions
-        try {
-            RankingItem response = rankingItemService.createRankingItem(toEntity(rankingItemDTO));
-            return ResponseEntity.ok(toDTO(response));
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().build();
-        }
+        RankingItem response = rankingItemService.createRankingItem(toEntity(rankingItemDTO));
+        return ResponseEntity.ok(toDTO(response));
+
     }
 
     @Override
     public ResponseEntity<RankingItemDTO> updateRankingItem(RankingItemDTO rankingItemDTO) {
-        // TODO create more specific exceptions
-        try {
-            // make this work with entity instead
-            RankingItem response = rankingItemService.updateRankingItem(toEntity(rankingItemDTO));
-            return ResponseEntity.ok(toDTO(response));
-        } catch (Exception e) {
-            // return body later
-            return ResponseEntity.badRequest().build();
-        }
+        RankingItem response = rankingItemService.updateRankingItem(toEntity(rankingItemDTO));
+        return ResponseEntity.ok(toDTO(response));
+
     }
 
     @Override
     public ResponseEntity deleteRankingItem(Long id) {
-        try {
-            rankingItemService.deleteRankingItem(id);
-            return ResponseEntity.noContent().build();
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().build();
-        }
+        rankingItemService.deleteRankingItem(id);
+        return ResponseEntity.noContent().build();
+
     }
 
     private RankingItemDTO toDTO(RankingItem rankingItemEntity) {
