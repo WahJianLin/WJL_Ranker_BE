@@ -13,8 +13,6 @@ import java.util.List;
 @RestController
 @RequestMapping(path = "api/v1/category")
 public class CategoryControllerImpl implements CategoryController {
-    // TODO use specific exceptions
-
     private final CategoryService categoryService;
 
     @Autowired
@@ -24,52 +22,37 @@ public class CategoryControllerImpl implements CategoryController {
 
     @Override
     public ResponseEntity<List<CategoryDTO>> getAllCategories() {
-        try {
-            List<Category> response = categoryService.getAllCategories();
-            return ResponseEntity.ok(response.stream().map(this::toDTO).toList());
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().build();
-        }
+        List<Category> response = categoryService.getAllCategories();
+        return ResponseEntity.ok(response.stream().map(this::toDTO).toList());
+
     }
 
     @Override
     public ResponseEntity<CategoryDTO> getCategoryById(Long id) {
-        try {
-            Category response = categoryService.getCategoryById(id);
-            return ResponseEntity.ok(toDTO(response));
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().build();
-        }
+        Category response = categoryService.getCategoryById(id);
+        return ResponseEntity.ok(toDTO(response));
+
     }
 
     @Override
     public ResponseEntity<CategoryDTO> createCategory(CategoryDTO categoryDTO) {
-        try {
-            Category response = categoryService.createCategory(toEntity(categoryDTO));
-            return ResponseEntity.ok(toDTO(response));
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().build();
-        }
+        Category response = categoryService.createCategory(toEntity(categoryDTO));
+        return ResponseEntity.ok(toDTO(response));
+
     }
 
     @Override
     public ResponseEntity<CategoryDTO> updateCategory(CategoryDTO categoryDTO) {
-        try {
-            Category response = categoryService.updateCategory(toEntity(categoryDTO));
-            return ResponseEntity.ok(toDTO(response));
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().build();
-        }
+        Category response = categoryService.updateCategory(toEntity(categoryDTO));
+        return ResponseEntity.ok(toDTO(response));
+
     }
 
     @Override
     public ResponseEntity deleteCategory(Long id) {
-        try {
-            categoryService.deleteCategory(id);
-            return ResponseEntity.noContent().build();
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().build();
-        }
+        categoryService.deleteCategory(id);
+        return ResponseEntity.noContent().build();
+
     }
 
     private CategoryDTO toDTO(Category category) {
