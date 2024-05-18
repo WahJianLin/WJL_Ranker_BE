@@ -1,4 +1,4 @@
-package com.wjl.ranker.exception;
+package com.wjl.ranker.exceptions;
 
 public class GeneralException extends RuntimeException {
 
