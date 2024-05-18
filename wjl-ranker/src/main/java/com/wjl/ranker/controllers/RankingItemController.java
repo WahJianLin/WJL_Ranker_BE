@@ -1,7 +1,10 @@
 package com.wjl.ranker.controllers;
 
 import com.wjl.ranker.dto.RankingItemDTO;
+import com.wjl.ranker.validations.OnUpdateValidation;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,10 +17,10 @@ public interface RankingItemController {
     ResponseEntity<RankingItemDTO> getRankingItemById(@PathVariable Long id);
 
     @PostMapping()
-    ResponseEntity<RankingItemDTO> createRankingItem(@RequestBody RankingItemDTO rankingItemDTO);
+    ResponseEntity<RankingItemDTO> createRankingItem(@Valid @RequestBody RankingItemDTO rankingItemDTO);
 
     @PutMapping()
-    ResponseEntity<RankingItemDTO> updateRankingItem(@RequestBody RankingItemDTO rankingItemDTO);
+    ResponseEntity<RankingItemDTO> updateRankingItem(@Validated(OnUpdateValidation.class) @RequestBody RankingItemDTO rankingItemDTO);
 
     @DeleteMapping("{id}")
     ResponseEntity deleteRankingItem(@PathVariable Long id);

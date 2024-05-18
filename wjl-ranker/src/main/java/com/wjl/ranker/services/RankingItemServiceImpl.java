@@ -2,7 +2,7 @@ package com.wjl.ranker.services;
 
 import com.wjl.ranker.Constants;
 import com.wjl.ranker.entities.RankingItem;
-import com.wjl.ranker.exception.GeneralException;
+import com.wjl.ranker.exceptions.GeneralException;
 import com.wjl.ranker.repositories.RankingItemRepo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
