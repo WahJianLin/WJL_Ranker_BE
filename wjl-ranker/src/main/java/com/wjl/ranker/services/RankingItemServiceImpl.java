@@ -13,7 +13,6 @@ import java.util.List;
 @Service
 @Slf4j
 public class RankingItemServiceImpl implements RankingItemService {
-    // TODO create validator
     public static final String ENTITY = "ITEM";
 
     private final RankingItemRepo rankingItemRepo;
