@@ -7,9 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import org.hibernate.proxy.HibernateProxy;
 
-import java.util.Objects;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -36,6 +35,9 @@ public class RankingItem {
     @JoinColumn(name = "category_id")
     @JsonManagedReference
     private Category category;
+    @OneToMany(mappedBy = "rankingItem")
+    private Set<Score> scoreSet;
+
     public RankingItem(String name, Category category) {
         this.setName(name);
         this.setCategory(category);
