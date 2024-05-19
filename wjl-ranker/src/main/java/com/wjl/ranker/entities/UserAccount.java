@@ -1,24 +1,18 @@
 package com.wjl.ranker.entities;
 
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import org.hibernate.proxy.HibernateProxy;
-
-import java.util.Objects;
 
 @Getter
 @Setter
 @ToString
 @Entity
 @NoArgsConstructor
-public class RankingItem {
-
-    private static final String SEQUENCE_NAME = "ranking_item_sequence";
+public class UserAccount {
+    private static final String SEQUENCE_NAME = "user_account_sequence";
 
     @Id
     @SequenceGenerator(
@@ -32,12 +26,8 @@ public class RankingItem {
     )
     private Long id;
     private String name;
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "category_id")
-    @JsonManagedReference
-    private Category category;
-    public RankingItem(String name, Category category) {
+
+    public UserAccount(String name) {
         this.setName(name);
-        this.setCategory(category);
     }
 }

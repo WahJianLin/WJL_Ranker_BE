@@ -5,13 +5,13 @@ import com.wjl.ranker.entities.Category;
 import java.util.List;
 
 public interface CategoryService {
-    List<Category> getAllCategories();
+    List<Category> getAll();
 
-    Category getCategoryById(Long id);
+    Category getById(Long id);
 
-    Category createCategory(Category categoryEntity);
+    Category create(Category categoryEntity);
 
-    Category updateCategory(Category categoryEntity);
+    Category update(Category categoryEntity);
 
-    void deleteCategory(long id);
+    void deleteById(long id);
 }

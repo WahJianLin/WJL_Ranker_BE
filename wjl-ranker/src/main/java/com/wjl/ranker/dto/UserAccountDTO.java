@@ -15,12 +15,9 @@ import static com.wjl.ranker.Constants.VALIDATION_NOT_NULL;
 @Setter
 @ToString
 @RequiredArgsConstructor
-public class RankingItemDTO {
+public class UserAccountDTO {
     @NotNull(groups = OnUpdateValidation.class, message = VALIDATION_NOT_NULL)
     private Long id;
-
     @NotBlank(message = VALIDATION_NOT_BLANK)
     private String name;
-    @NotNull(message = VALIDATION_NOT_NULL)
-    private Long categoryTypeId;
 }
