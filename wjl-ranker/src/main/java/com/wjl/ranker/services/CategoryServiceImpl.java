@@ -23,12 +23,12 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public List<Category> getAllCategories() {
+    public List<Category> getAll() {
         return categoryRepo.findAll();
     }
 
     @Override
-    public Category getCategoryById(Long id) {
+    public Category getById(Long id) {
         return categoryRepo.findById(id).orElseThrow(() -> {
             log.error(String.format(Constants.LOG_FAILED_FIND, ENTITY, id));
             return new GeneralException(String.format(Constants.EXCEPTION_GENERAL_NOT_FOUND, ENTITY));
@@ -36,7 +36,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Category createCategory(Category categoryEntity) {
+    public Category create(Category categoryEntity) {
         try {
             log.info((String.format(Constants.LOG_ATTEMPTING_TO_SAVE, ENTITY, categoryEntity.getId(), categoryEntity)));
             return categoryRepo.save(categoryEntity);
@@ -47,8 +47,8 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Category updateCategory(Category categoryEntity) {
-        Category category = getCategoryById(categoryEntity.getId());
+    public Category update(Category categoryEntity) {
+        Category category = getById(categoryEntity.getId());
         try {
             log.info((String.format(Constants.LOG_ATTEMPTING_TO_UPDATE, ENTITY, categoryEntity.getId(), categoryEntity)));
 
@@ -62,7 +62,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public void deleteCategory(long id) {
+    public void deleteById(long id) {
         log.info(String.format(Constants.LOG_ATTEMPTING_TO_DELETE, ENTITY, id));
         if (!categoryRepo.existsById(id)) {
             log.error(String.format(Constants.LOG_FAILED_DELETE, ENTITY, id));

@@ -23,17 +23,17 @@ public class RankingItemServiceImpl implements RankingItemService {
     }
 
     @Override
-    public List<RankingItem> getAllRankingItems() {
+    public List<RankingItem> getAll() {
         return rankingItemRepo.findAll();
     }
 
     @Override
-    public RankingItem getRankingItemById(Long id) {
+    public RankingItem getByID(Long id) {
         return getRankingItem(id);
     }
 
     @Override
-    public RankingItem createRankingItem(RankingItem rankingItemEntity) {
+    public RankingItem create(RankingItem rankingItemEntity) {
         try {
             log.info((String.format(Constants.LOG_ATTEMPTING_TO_SAVE, ENTITY, rankingItemEntity.getId(), rankingItemEntity)));
             return rankingItemRepo.save(rankingItemEntity);
@@ -44,7 +44,7 @@ public class RankingItemServiceImpl implements RankingItemService {
     }
 
     @Override
-    public RankingItem updateRankingItem(RankingItem rankingItemEntity) {
+    public RankingItem update(RankingItem rankingItemEntity) {
         RankingItem item = getRankingItem(rankingItemEntity.getId());
         try {
             log.info((String.format(Constants.LOG_ATTEMPTING_TO_UPDATE, ENTITY, rankingItemEntity.getId(), rankingItemEntity)));
@@ -60,7 +60,7 @@ public class RankingItemServiceImpl implements RankingItemService {
     }
 
     @Override
-    public void deleteRankingItem(long id) {
+    public void deleteById(long id) {
         log.info(String.format(Constants.LOG_ATTEMPTING_TO_DELETE, ENTITY, id));
         if (!rankingItemRepo.existsById(id)) {
             log.error(String.format(Constants.LOG_FAILED_DELETE, ENTITY, id));

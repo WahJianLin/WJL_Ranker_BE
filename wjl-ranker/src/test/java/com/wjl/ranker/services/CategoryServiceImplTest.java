@@ -49,7 +49,7 @@ public class CategoryServiceImplTest {
         List<Category> categories = Arrays.asList(novel, movie);
         when(categoryRepo.findAll()).thenReturn(categories);
 
-        List<Category> result = categoryService.getAllCategories();
+        List<Category> result = categoryService.getAll();
 
         verify(categoryRepo).findAll();
         assertNotNull(result);
@@ -63,7 +63,7 @@ public class CategoryServiceImplTest {
         category.setId(id);
         when(categoryRepo.findById(id)).thenReturn(Optional.of(category));
 
-        Category result = categoryService.getCategoryById(id);
+        Category result = categoryService.getById(id);
 
         assertNotNull(result);
         assertEquals(id, result.getId().longValue());
@@ -73,7 +73,7 @@ public class CategoryServiceImplTest {
     void testCreateCategory() {
         when(categoryRepo.save(novel)).thenReturn(novel);
 
-        Category result = categoryService.createCategory(novel);
+        Category result = categoryService.create(novel);
 
         assertNotNull(result);
         assertEquals("novel", result.getName());
@@ -91,7 +91,7 @@ public class CategoryServiceImplTest {
         when(categoryRepo.findById(id)).thenReturn(Optional.of(existingCategory));
         when(categoryRepo.save(existingCategory)).thenReturn(existingCategory);
 
-        Category result = categoryService.updateCategory(updatedCategory);
+        Category result = categoryService.update(updatedCategory);
 
         assertNotNull(result);
         assertEquals(movie.getName(), result.getName());
@@ -102,7 +102,7 @@ public class CategoryServiceImplTest {
         long id = 1L;
         when(categoryRepo.existsById(id)).thenReturn(true);
 
-        categoryService.deleteCategory(id);
+        categoryService.deleteById(id);
 
         verify(categoryRepo, times(1)).deleteById(id);
     }
@@ -113,7 +113,7 @@ public class CategoryServiceImplTest {
         when(categoryRepo.existsById(id)).thenReturn(false);
 
         try {
-            categoryService.deleteCategory(id);
+            categoryService.deleteById(id);
         } catch (GeneralException e) {
             assertEquals("Error: " + String.format(Constants.EXCEPTION_GENERAL_FAILED_DELETE, ENTITY), e.getMessage());
         }

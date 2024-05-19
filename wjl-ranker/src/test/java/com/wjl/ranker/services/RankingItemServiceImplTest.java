@@ -54,7 +54,7 @@ public class RankingItemServiceImplTest {
         List<RankingItem> rankingItem = Arrays.asList(alpha, beta, charlie);
         when(rankingItemRepo.findAll()).thenReturn(rankingItem);
 
-        List<RankingItem> result = rankingItemService.getAllRankingItems();
+        List<RankingItem> result = rankingItemService.getAll();
 
         verify(rankingItemRepo).findAll();
         assertNotNull(result);
@@ -68,7 +68,7 @@ public class RankingItemServiceImplTest {
         rankingItem.setId(id);
         when(rankingItemRepo.findById(id)).thenReturn(Optional.of(rankingItem));
 
-        RankingItem result = rankingItemService.getRankingItemById(id);
+        RankingItem result = rankingItemService.getByID(id);
 
         assertNotNull(result);
         assertEquals(id, result.getId().longValue());
@@ -78,7 +78,7 @@ public class RankingItemServiceImplTest {
     void testCreateCategory() {
         when(rankingItemRepo.save(alpha)).thenReturn(alpha);
 
-        RankingItem result = rankingItemService.createRankingItem(alpha);
+        RankingItem result = rankingItemService.create(alpha);
 
         assertNotNull(result);
         assertEquals(alpha.getName(), result.getName());
@@ -96,7 +96,7 @@ public class RankingItemServiceImplTest {
         when(rankingItemRepo.findById(id)).thenReturn(Optional.of(existingItem));
         when(rankingItemRepo.save(existingItem)).thenReturn(existingItem);
 
-        RankingItem result = rankingItemService.updateRankingItem(updatedItem);
+        RankingItem result = rankingItemService.update(updatedItem);
 
         assertNotNull(result);
         assertEquals(alpha.getName(), result.getName());
@@ -107,7 +107,7 @@ public class RankingItemServiceImplTest {
         long id = 1L;
         when(rankingItemRepo.existsById(id)).thenReturn(true);
 
-        rankingItemService.deleteRankingItem(id);
+        rankingItemService.deleteById(id);
 
         verify(rankingItemRepo, times(1)).deleteById(id);
     }
@@ -118,7 +118,7 @@ public class RankingItemServiceImplTest {
         when(rankingItemRepo.existsById(id)).thenReturn(false);
 
         try {
-            rankingItemService.deleteRankingItem(id);
+            rankingItemService.deleteById(id);
         } catch (GeneralException e) {
             assertEquals("Error: " + String.format(Constants.EXCEPTION_GENERAL_FAILED_DELETE, ENTITY), e.getMessage());
         }

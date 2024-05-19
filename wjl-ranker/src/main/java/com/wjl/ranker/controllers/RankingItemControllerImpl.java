@@ -29,35 +29,35 @@ public class RankingItemControllerImpl implements RankingItemController {
 
     @Override
     public ResponseEntity<List<RankingItemDTO>> getAllRankingItems() {
-        List<RankingItem> response = rankingItemService.getAllRankingItems();
+        List<RankingItem> response = rankingItemService.getAll();
         return ResponseEntity.ok(response.stream().map(this::toDTO).toList());
 
     }
 
     @Override
     public ResponseEntity<RankingItemDTO> getRankingItemById(Long id) {
-        RankingItem response = rankingItemService.getRankingItemById(id);
+        RankingItem response = rankingItemService.getByID(id);
         return ResponseEntity.ok(toDTO(response));
 
     }
 
     @Override
     public ResponseEntity<RankingItemDTO> createRankingItem(RankingItemDTO rankingItemDTO) {
-        RankingItem response = rankingItemService.createRankingItem(toEntity(rankingItemDTO));
+        RankingItem response = rankingItemService.create(toEntity(rankingItemDTO));
         return ResponseEntity.ok(toDTO(response));
 
     }
 
     @Override
     public ResponseEntity<RankingItemDTO> updateRankingItem(RankingItemDTO rankingItemDTO) {
-        RankingItem response = rankingItemService.updateRankingItem(toEntity(rankingItemDTO));
+        RankingItem response = rankingItemService.update(toEntity(rankingItemDTO));
         return ResponseEntity.ok(toDTO(response));
 
     }
 
     @Override
     public ResponseEntity deleteRankingItem(Long id) {
-        rankingItemService.deleteRankingItem(id);
+        rankingItemService.deleteById(id);
         return ResponseEntity.noContent().build();
 
     }
@@ -81,7 +81,7 @@ public class RankingItemControllerImpl implements RankingItemController {
         rankingItem.setId(rankingItemDTO.getId());
         rankingItem.setName(rankingItemDTO.getName());
         if (rankingItemDTO.getCategoryTypeId() != null) {
-            Category category = categoryService.getCategoryById(rankingItemDTO.getCategoryTypeId());
+            Category category = categoryService.getById(rankingItemDTO.getCategoryTypeId());
             rankingItem.setCategory(category);
         }
         return rankingItem;

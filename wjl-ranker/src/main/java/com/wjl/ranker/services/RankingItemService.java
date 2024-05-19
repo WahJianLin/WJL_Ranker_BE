@@ -5,14 +5,14 @@ import com.wjl.ranker.entities.RankingItem;
 import java.util.List;
 
 public interface RankingItemService {
-    List<RankingItem> getAllRankingItems();
+    List<RankingItem> getAll();
 
-    RankingItem getRankingItemById(Long id);
+    RankingItem getByID(Long id);
 
-    RankingItem createRankingItem(RankingItem rankingItemEntity);
+    RankingItem create(RankingItem rankingItemEntity);
 
-    RankingItem updateRankingItem(RankingItem rankingItemEntity);
+    RankingItem update(RankingItem rankingItemEntity);
 
-    void deleteRankingItem(long id);
+    void deleteById(long id);
 
 }
