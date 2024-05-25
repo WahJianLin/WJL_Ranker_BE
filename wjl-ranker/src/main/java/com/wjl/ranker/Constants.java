@@ -10,12 +10,17 @@ public class Constants {
     public static final String LOG_PREFIX = "(LOG) ";
     public static final String LOG_ATTEMPTING_TO_SAVE = LOG_PREFIX + "Attempting to Save %s with ID %d: %s";
     public static final String LOG_ATTEMPTING_TO_UPDATE = LOG_PREFIX + "Attempting to Update %s with ID %d: %s";
+    public static final String LOG_ATTEMPTING_TO_UPDATE_BULK = LOG_PREFIX + "Attempting to Update %s with IDs %s";
     public static final String LOG_ATTEMPTING_TO_DELETE = LOG_PREFIX + "Attempting to Delete %s with ID %d";
+    public static final String LOG_ATTEMPTING_TO_DELETE_BULK = LOG_PREFIX + "Attempting to Delete %s with IDs %s";
     public static final String LOG_FAILED_FIND = LOG_PREFIX + "Failed to Find: %s with ID %d";
     public static final String LOG_FAILED_SAVE = LOG_PREFIX + "Failed to Update %s with ID %d: %s";
     public static final String LOG_FAILED_UPDATE = LOG_PREFIX + "Failed to Update %s with ID %d: %s";
+    public static final String LOG_FAILED_UPDATE_BULK = LOG_PREFIX + "Failed to bulk Update %s: %s";
     public static final String LOG_FAILED_DELETE = LOG_PREFIX + "Failed to Delete %s with ID %d";
+    public static final String LOG_FAILED_DELETE_BULK = LOG_PREFIX + "Failed to bulk Delete %s with IDs %s";
     public static final String LOG_SUCCESSFUL_DELETE = LOG_PREFIX + "%s with ID %d successfully Deleted";
+    public static final String LOG_SUCCESSFUL_DELETE_BULK = LOG_PREFIX + "%s with IDs %s successfully Deleted";
 
     //Exception Constants
     public static final String EXCEPTION_PREFIX = "(EXCEPTION) ";

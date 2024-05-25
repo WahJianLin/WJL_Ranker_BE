@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Validated
 public interface RankingItemController {
     @GetMapping()
     ResponseEntity<List<RankingItemDTO>> getAllRankingItems();

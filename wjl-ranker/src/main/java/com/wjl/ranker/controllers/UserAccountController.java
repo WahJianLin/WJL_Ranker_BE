@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Validated
 public interface UserAccountController {
     @GetMapping()
     ResponseEntity<List<UserAccountDTO>> getAllUsers();

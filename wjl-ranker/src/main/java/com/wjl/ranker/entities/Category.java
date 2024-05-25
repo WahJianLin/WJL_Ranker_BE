@@ -36,6 +36,10 @@ public class Category {
     @ToString.Exclude
     private Set<RankingItem> rankingItemSet;
 
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+    @JsonBackReference
+    @ToString.Exclude
+    private Set<Score> scoreSet;
 
     public Category(String name, String description) {
         this.setName(name);
