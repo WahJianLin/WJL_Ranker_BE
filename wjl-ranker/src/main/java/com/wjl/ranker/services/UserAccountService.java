@@ -9,9 +9,9 @@ public interface UserAccountService {
 
     UserAccount getById(Long id);
 
-    UserAccount create(UserAccount UserAccountEntity);
+    UserAccount create(UserAccount userAccountEntity);
 
-    UserAccount update(UserAccount UserAccountEntity);
+    UserAccount update(UserAccount userAccountEntity);
 
     void deleteById(long id);
 }

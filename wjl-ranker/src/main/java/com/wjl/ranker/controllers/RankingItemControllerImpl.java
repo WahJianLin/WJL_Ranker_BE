@@ -56,7 +56,7 @@ public class RankingItemControllerImpl implements RankingItemController {
     }
 
     @Override
-    public ResponseEntity deleteRankingItem(Long id) {
+    public ResponseEntity<Void> deleteRankingItem(Long id) {
         rankingItemService.deleteById(id);
         return ResponseEntity.noContent().build();
 

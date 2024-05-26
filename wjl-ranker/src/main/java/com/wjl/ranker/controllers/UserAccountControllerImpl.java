@@ -46,7 +46,7 @@ public class UserAccountControllerImpl implements UserAccountController {
     }
 
     @Override
-    public ResponseEntity deleteUser(Long id) {
+    public ResponseEntity<Void> deleteUser(Long id) {
         userAccountService.deleteById(id);
         return ResponseEntity.noContent().build();
     }

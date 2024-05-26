@@ -24,35 +24,30 @@ public class CategoryControllerImpl implements CategoryController {
     public ResponseEntity<List<CategoryDTO>> getAllCategories() {
         List<Category> response = categoryService.getAll();
         return ResponseEntity.ok(response.stream().map(this::toDTO).toList());
-
     }
 
     @Override
     public ResponseEntity<CategoryDTO> getCategoryById(Long id) {
         Category response = categoryService.getById(id);
         return ResponseEntity.ok(toDTO(response));
-
     }
 
     @Override
     public ResponseEntity<CategoryDTO> createCategory(CategoryDTO categoryDTO) {
         Category response = categoryService.create(toEntity(categoryDTO));
         return ResponseEntity.ok(toDTO(response));
-
     }
 
     @Override
     public ResponseEntity<CategoryDTO> updateCategory(CategoryDTO categoryDTO) {
         Category response = categoryService.update(toEntity(categoryDTO));
         return ResponseEntity.ok(toDTO(response));
-
     }
 
     @Override
-    public ResponseEntity deleteCategory(Long id) {
+    public ResponseEntity<Void> deleteCategory(Long id) {
         categoryService.deleteById(id);
         return ResponseEntity.noContent().build();
-
     }
 
     private CategoryDTO toDTO(Category category) {

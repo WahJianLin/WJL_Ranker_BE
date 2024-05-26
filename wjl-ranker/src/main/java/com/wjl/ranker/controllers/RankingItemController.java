@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Validated
 public interface RankingItemController {
     @GetMapping()
     ResponseEntity<List<RankingItemDTO>> getAllRankingItems();
@@ -23,5 +24,5 @@ public interface RankingItemController {
     ResponseEntity<RankingItemDTO> updateRankingItem(@Validated(OnUpdateValidation.class) @RequestBody RankingItemDTO rankingItemDTO);
 
     @DeleteMapping("{id}")
-    ResponseEntity deleteRankingItem(@PathVariable Long id);
+    ResponseEntity<Void> deleteRankingItem(@PathVariable Long id);
 }

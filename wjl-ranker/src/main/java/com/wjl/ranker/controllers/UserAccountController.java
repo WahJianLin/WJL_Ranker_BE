@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Validated
 public interface UserAccountController {
     @GetMapping()
     ResponseEntity<List<UserAccountDTO>> getAllUsers();
@@ -23,5 +24,5 @@ public interface UserAccountController {
     ResponseEntity<UserAccountDTO> updateUser(@Validated(OnUpdateValidation.class) @RequestBody UserAccountDTO userAccountDTO);
 
     @DeleteMapping("{id}")
-    ResponseEntity deleteUser(@PathVariable Long id);
+    ResponseEntity<Void> deleteUser(@PathVariable Long id);
 }

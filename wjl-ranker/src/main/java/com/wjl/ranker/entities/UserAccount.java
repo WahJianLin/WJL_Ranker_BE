@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.Set;
+
 @Getter
 @Setter
 @ToString
@@ -26,6 +28,8 @@ public class UserAccount {
     )
     private Long id;
     private String name;
+    @OneToMany(mappedBy = "userAccount")
+    private Set<Score> scoreSet;
 
     public UserAccount(String name) {
         this.setName(name);
