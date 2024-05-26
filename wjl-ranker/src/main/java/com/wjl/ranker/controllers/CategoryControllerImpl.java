@@ -45,7 +45,7 @@ public class CategoryControllerImpl implements CategoryController {
     }
 
     @Override
-    public ResponseEntity deleteCategory(Long id) {
+    public ResponseEntity<Void> deleteCategory(Long id) {
         categoryService.deleteById(id);
         return ResponseEntity.noContent().build();
     }

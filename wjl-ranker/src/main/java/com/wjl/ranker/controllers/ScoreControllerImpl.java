@@ -14,13 +14,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
 @RestController
 @RequestMapping(path = "api/v1/score")
-public class ScoreControllerImpl implements ScoreController{
+public class ScoreControllerImpl implements ScoreController {
 
     private final ScoreService scoreService;
     private final UserAccountService userAccountService;
@@ -51,14 +50,14 @@ public class ScoreControllerImpl implements ScoreController{
     @Override
     public ResponseEntity<List<ScoreDTO>> updateScoresByCategoryAndUser(List<ScoreDTO> scoreDtoList, Long categoryId) {
         Category category = categoryService.getById(categoryId);
-        List<Score> scores = scoreDtoList.stream().map((scoreDTO)-> toEntity(scoreDTO, category)).toList();
+        List<Score> scores = scoreDtoList.stream().map(scoreDTO -> toEntity(scoreDTO, category)).toList();
         List<Score> response = scoreService.updateBulk(scores);
         return ResponseEntity.ok().body(response.stream().map(this::toDTO).toList());
     }
 
     @Override
-    public ResponseEntity deleteScoresByCategoryAndUser(List<UserItemScoreKeyDTO> UserItemScoreKeyDTOList) {
-        List<UserItemScoreKey> compositeIds = UserItemScoreKeyDTOList.stream().map((dto)-> new UserItemScoreKey(dto.getUserAccountId(), dto.getRankingItemId())).toList();
+    public ResponseEntity<Void> deleteScoresByCategoryAndUser(List<UserItemScoreKeyDTO> userItemScoreKeyDTOList) {
+        List<UserItemScoreKey> compositeIds = userItemScoreKeyDTOList.stream().map(keyDTO -> new UserItemScoreKey(keyDTO.getUserAccountId(), keyDTO.getRankingItemId())).toList();
         scoreService.deleteBulk(compositeIds);
         return ResponseEntity.noContent().build();
     }

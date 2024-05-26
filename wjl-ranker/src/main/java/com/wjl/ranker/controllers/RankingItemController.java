@@ -24,5 +24,5 @@ public interface RankingItemController {
     ResponseEntity<RankingItemDTO> updateRankingItem(@Validated(OnUpdateValidation.class) @RequestBody RankingItemDTO rankingItemDTO);
 
     @DeleteMapping("{id}")
-    ResponseEntity deleteRankingItem(@PathVariable Long id);
+    ResponseEntity<Void> deleteRankingItem(@PathVariable Long id);
 }

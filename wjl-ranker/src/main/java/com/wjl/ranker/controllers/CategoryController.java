@@ -24,5 +24,5 @@ public interface CategoryController {
     ResponseEntity<CategoryDTO> updateCategory(@Validated(OnUpdateValidation.class) @RequestBody CategoryDTO categoryDTO);
 
     @DeleteMapping("{id}")
-    ResponseEntity deleteCategory(@PathVariable Long id);
+    ResponseEntity<Void> deleteCategory(@PathVariable Long id);
 }
