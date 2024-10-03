@@ -18,6 +18,7 @@ public class ScoreDTO {
     @NotNull(message = VALIDATION_NOT_NULL)
     private Long rankingItemId;
 
+    private String rankingItemName;
     private Long categoryId;
 
     private Integer scoreValue;
